@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,9 +45,7 @@ public class MainMenu extends AppCompatActivity {
                     "You have clicked on map action menu",
                     Toast.LENGTH_SHORT)
                     .show();
-//            Intent mapActivityIntent = new Intent(this, MapActivity.class);
-//            startActivity(mapActivityIntent);
-//            finish();
+            ToMap(null);
         }
         if(item.getItemId() == R.id.action_setting){
             Toast.makeText(MainMenu.this,
@@ -64,6 +63,19 @@ public class MainMenu extends AppCompatActivity {
                     .show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void ToMap(View view) {
+        Intent mapIntent = new Intent(this, MapsActivity.class);
+
+        // Example of sending info from this intent to the next
+        // if I had a EditText view for user input
+        // final EditText mainMenuInput = (EditText) findViewById(R.id.mainMenuInput);
+        // String userMessage = mainMenuInput.getText().toString();
+        // i.putExtra("mainMenuMessage", userMessage); // key, value pair
+
+        startActivity(mapIntent);
+        finish();
     }
 
     /**
