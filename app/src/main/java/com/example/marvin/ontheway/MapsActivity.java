@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
+    
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mMap != null) {
