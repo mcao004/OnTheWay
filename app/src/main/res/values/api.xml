@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+         AIzaSyA5-pinLweoACxv4Fr7kQljUrIASq08k_w
+    </string>
+    <string name="foursquare_client_id" templateMergeStrategy="preserve" translatable="false">
+        HQC1E0VMTNM4OMBFUE25KIG4FNP2K3GB5HEFE4KFTCX11ZYW
+    </string>
+    <string name="foursquare_client_secret" templateMergeStrategy="preserve" translatable="false">
+        03AF4PCD1YBV2ULY1UP2MI3ZFT5GHAQ22EEWSCUSADMAJJEE
+    </string>
+    <string name="google_places_key" templateMergeStrategy="preserve" translatable="false">
+         AIzaSyCgpUy9F87exvIosMwPl_IT7-ZQhXAw1n0
+    </string>
+</resources>
