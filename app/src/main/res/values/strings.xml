@@ -6,4 +6,5 @@
     <string name="title_activity_map">Map</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
+    <string name = "places_api">AIzaSyA5-pinLweoACxv4Fr7kQljUrIASq08k_w</string>
 </resources>

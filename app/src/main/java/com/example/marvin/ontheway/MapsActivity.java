@@ -1,11 +1,16 @@
 package com.example.marvin.ontheway;
 
+import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -13,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.PlaceDetectionClient;
@@ -27,8 +33,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
 
-    private Location mLastKnownLocation;
 
+    public static CharSequence name;
+
+    private Location mLastKnownLocation;
+    int PLACE_PICKER_REQUEST = 1;
     private GoogleApiClient mGoogleApiClient;
 
     // keys to store activity state
@@ -41,11 +50,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         // Retrieve location and camera position from saved instance state
-        if (savedInstanceState != null) {
-            mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
-            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
-        }
+//        if (savedInstanceState != null) {
+//            mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
+//            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
+//        }
 
+        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+        try {
+            final Intent intent = intentBuilder.build(this);
+            startActivityForResult(intentBuilder.build(this), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
         // getting info from mainMenu
         // Bundle mainMenuData = getIntent().getExtras();
         // if(mainMenuData == null) return;
@@ -56,22 +72,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // }
 
         // Construct a GeoDataClient for access to Google's local place and business info
-        mGeoDataClient = Places.getGeoDataClient(this, null);
-
-        // Construct a PlaceDetectionClient
-        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
-
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+//        mGeoDataClient = Places.getGeoDataClient(this, null);
+//
+//        // Construct a PlaceDetectionClient
+//        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
+//
+//        mGoogleApiClient = new GoogleApiClient
+//                .Builder(this)
+//                .addApi(Places.GEO_DATA_API)
+//                .addApi(Places.PLACE_DETECTION_API)
+//                .enableAutoManage(this, this)
+//                .build();
+//
+//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
     }
     
     @Override
@@ -105,5 +121,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         // Doesn't handle anything yet
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
+            //chose place
+            Place place = PlacePicker.getPlace(data, this);
+
+            //store restaurant info
+            name = place.getName();
+            Toast.makeText(getApplicationContext(),name, Toast.LENGTH_SHORT).show();
+
+//            phone = place.getPhoneNumber();
+//            rating = place.getRating();
+//            mytext = Float.toString(rating);
+
+            //create a restaurant page for chosen place
+            Intent intent = new Intent(this, MainMenu.class);
+            startActivity(intent);
+
+            //notification saying restaurant name
+            // String toastMsg = String.format("Place: %s", name);
+            // Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+        }
     }
 }
