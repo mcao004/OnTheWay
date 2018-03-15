@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/popup"
     android:background="@drawable/nobu_malibu_popup"
-    android:orientation="vertical"
-    android:onClick="save">
+    android:orientation="vertical">
 
     <!--<TextView-->
         <!--android:id="@+id/textView1"-->

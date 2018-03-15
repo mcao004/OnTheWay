@@ -1,19 +1,19 @@
 package com.example.marvin.ontheway;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainMenu extends AppCompatActivity {
- private Button btn1;
+    private Button btn1;
     // Used to load the 'native-lib' library on application startup.
     View view;
     static {
@@ -28,6 +28,22 @@ public class MainMenu extends AppCompatActivity {
         // Example of a call to a native method
         // TextView tv = (TextView) findViewById(R.id.sample_text);
         // tv.setText(stringFromJNI());
+
+        Bundle extraData = getIntent().getExtras();
+        if (extraData != null && extraData.getString("saved") != null) {
+            String savedMessage = "saved " + extraData.getString("saved");
+            Snackbar sb = Snackbar.make((View)findViewById(R.id.toolbar),savedMessage, Snackbar.LENGTH_LONG);
+            sb.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainMenu.this,
+                            "Removed",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
+            });
+            sb.show();
+        }
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -86,7 +102,7 @@ public class MainMenu extends AppCompatActivity {
         // i.putExtra("mainMenuMessage", userMessage); // key, value pair
 
         startActivity(mapIntent);
-        finish();
+//        finish();
     }
     public void ToNotification(View view) {
         Intent intent = new Intent(this, ListViewNotification.class);
