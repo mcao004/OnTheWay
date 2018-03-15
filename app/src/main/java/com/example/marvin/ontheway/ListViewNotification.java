@@ -29,8 +29,8 @@ public class ListViewNotification extends Activity{
     ListView listView;
     CustomObject co;
 
-    ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
-    CustomAdapter customAdapter = new CustomAdapter(this, objects);
+//    ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
+//    CustomAdapter customAdapter = new CustomAdapter(this, objects);
 //    final LayoutInflater mInflator;
     //    @Override
 String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "10 minutes ago"};
@@ -46,7 +46,9 @@ String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "10 min
 //        String[] first1 = new String[] {  "Hey! Your Getaway Cafe is on the way!", "Hey! Your BCD tofu house is on the way!" ,"Hey! Your Ruth's Chris Steak House is on the way!"};
 //        String[] first2 = new String[] {"10 minutes ago","March 3rd, 2018", "January 29th, 2018"};
         final LayoutInflater mInflator = LayoutInflater.from(this);
-//        listView = (ListView) findViewById(R.id.)
+//        ListView lv = (ListView) find
+//        listView = (ListView) findViewById(R.id.listview);
+
 
 
 //        final ArrayList
@@ -63,11 +65,27 @@ String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "10 min
 //        co.setProp(values1[0], values1[1]);
 //        listView.setAdapter();
 //        listView.setAdapter(customAdapter);
-        display();
+
+//        display();
     }
-    private void display()
-//    public View getView (int position, View convertView, ViewGroup parent)
+
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        co = new CustomObject(values1[0],values1[1]);
+        ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
+
+        CustomAdapter customAdapter = new CustomAdapter(this, objects);
+        listView.setAdapter(customAdapter);
+    }
+    //    private void display()
+    /*
+    public View getView (int position, View convertView, ViewGroup parent)
     {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = convertView;
+//        ViewHolder holder = null;
+
         listView = (ListView) findViewById(R.id.listview);
         System.out.println("Enters");
 //        if(convertView == null)
@@ -80,5 +98,5 @@ String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "10 min
 //        ((TextView) convertView.findViewById(R.id.secondLine)).setText(values1[1]);
 //        listView.setAdapter(customAdapter);
 //        return convertView;
-    }
+    }*/
 }
