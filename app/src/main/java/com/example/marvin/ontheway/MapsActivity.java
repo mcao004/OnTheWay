@@ -140,8 +140,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            mytext = Float.toString(rating);
 
             //create a restaurant page for chosen place
-            Intent intent = new Intent(this, MainMenu.class);
+            Intent intent = new Intent(this, SavedMap.class);
             startActivity(intent);
+            finish();
 
             //notification saying restaurant name
             // String toastMsg = String.format("Place: %s", name);
