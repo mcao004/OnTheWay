@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -31,8 +32,17 @@ public class SavedMap extends AppCompatActivity {
             public void onClick(View v) {
                 if (p != null) {
                     showPopup(SavedMap.this, p);
-                    popUp(null);
+                    //popUp(null);
                 }
+            }
+        });
+
+        Button saveButton = (Button) findViewById(R.id.button3);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save(v);
             }
         });
     }
@@ -97,6 +107,8 @@ public class SavedMap extends AppCompatActivity {
                 Toast.LENGTH_SHORT)
                 .show();
         Intent mainMenuIntent = new Intent(this, MainMenu.class);
+        String snackbarMessage = "Nobu Malibu";
+        mainMenuIntent.putExtra("saved", snackbarMessage);
         startActivity(mainMenuIntent);
         finish();
     }
