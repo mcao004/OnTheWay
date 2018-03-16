@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class CustomAdapter extends BaseAdapter{
     }
     public CustomAdapter(Context context, ArrayList<CustomObject> objects) {
         mInflator = LayoutInflater.from(context);
+//        super(context, objects);
         this.objects = objects;
     }
     public int getCount() {
@@ -82,14 +84,17 @@ public class CustomAdapter extends BaseAdapter{
         if(convertView == null) {
             holder = new ViewHolder();
             convertView = mInflator.inflate(R.layout.item, null);
-            holder.textView1 = (TextView) convertView.findViewById(R.id.firstLine);
+//            holder.textView1 = (TextView) convertView.findViewById(R.id.messages);
+
             holder.textView2 = (TextView) convertView.findViewById(R.id.secondLine);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.textView1.setText(objects.get(position).getProp1());
+//        holder.textView1.setText(objects.get(position).getProp1());
+        Log.d("Test" , "heyy " + objects.get(position).getProp1());
         holder.textView2.setText(objects.get(position).getProp2());
+
         return convertView;
     }
 }

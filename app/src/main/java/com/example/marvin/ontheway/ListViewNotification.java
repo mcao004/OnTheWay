@@ -28,25 +28,43 @@ public class ListViewNotification extends Activity{
 
     ListView listView;
     CustomObject co;
+    CustomAdapter customAdapter;
 
 //    ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
 //    CustomAdapter customAdapter = new CustomAdapter(this, objects);
 //    final LayoutInflater mInflator;
     //    @Override
-String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "10 minutes ago"};
-    String[] values2 = new String[]{"Hey! Your Getaway Cafe is on the way!", "March 3rd, 2018"};
-    String[] values3 = new String[]{"Hey! Your Getaway Cafe is on the way!", "January 29th, 2018"};
-    String[] values4 = new String[]{"Hey! Your Nobu Malibu is on the way!", "Now"};
+String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "Hey! Your Getaway Cafe is on the way!\n10 minutes ago"};
+    String[] values2 = new String[]{"Hey! Your BCD tofu house is on the way!", "Hey! Your BCD tofu house is on the way\nMarch 3rd, 2018"};
+    String[] values3 = new String[]{"Hey! Your Ruth's Chris Steak House is on the way!", "Hey! Your Ruth's Chris Steak House is on the way!\nJanuary 29th, 2018"};
+    String[] values4 = new String[]{"Hey! Your Nobu Malibu is on the way!", "Hey! Your Nobu Malibu is on the way!\nNow"};
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_listview);
-
+        listView = (ListView) findViewById(R.id.mlistview);
 
 //        String[] first1 = new String[] {  "Hey! Your Getaway Cafe is on the way!", "Hey! Your BCD tofu house is on the way!" ,"Hey! Your Ruth's Chris Steak House is on the way!"};
 //        String[] first2 = new String[] {"10 minutes ago","March 3rd, 2018", "January 29th, 2018"};
-        final LayoutInflater mInflator = LayoutInflater.from(this);
+//        final LayoutInflater mInflator = LayoutInflater.from(this);
 //        ListView lv = (ListView) find
+
+//        Log.d("Test", " This is working?" + this.toString());
+        ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
+        co = new CustomObject(values4[0],values4[1]);
+        objects.add(co);
+        Log.d("Test", " This is working??" + objects.get(0).getProp1() + " " + objects.get(0).getProp2());
+        co = new CustomObject(values1[0],values1[1]);
+
+        objects.add(co);
+        co = new CustomObject(values2[0],values2[1]);
+        objects.add(co);
+        co = new CustomObject(values3[0],values3[1]);
+        objects.add(co);
+        customAdapter = new CustomAdapter(ListViewNotification.this, objects);
+//        customAdapter.notifyDataSetChanged();
+        listView.setAdapter(customAdapter);
+        Log.d("Test", " This is working" + objects.get(3).getProp1() + " " + objects.get(3).getProp2());
 //        listView = (ListView) findViewById(R.id.listview);
 
 
@@ -72,11 +90,7 @@ String[] values1 = new String[]{"Hey! Your Getaway Cafe is on the way!", "10 min
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
-        co = new CustomObject(values1[0],values1[1]);
-        ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
 
-        CustomAdapter customAdapter = new CustomAdapter(this, objects);
-        listView.setAdapter(customAdapter);
     }
     //    private void display()
     /*
