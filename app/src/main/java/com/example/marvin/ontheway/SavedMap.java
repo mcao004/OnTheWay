@@ -1,11 +1,14 @@
 package com.example.marvin.ontheway;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -111,6 +114,16 @@ public class SavedMap extends AppCompatActivity {
         mainMenuIntent.putExtra("saved", snackbarMessage);
         startActivity(mainMenuIntent);
         finish();
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+        .setPriority(NotificationManager.IMPORTANCE_HIGH);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(001,mBuilder.build());
+
+
     }
 
     public void popUp(View view) {

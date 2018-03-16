@@ -28,29 +28,7 @@ public class CustomAdapter extends BaseAdapter{
 
     ListView listView;
     final LayoutInflater mInflator;
-    //    @Override
-    /*
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.notification_listview);
-       listView = (ListView) findViewById(R.id.listview);
 
-//        String[] first1 = new String[] {  "Hey! Your Getaway Cafe is on the way!", "Hey! Your BCD tofu house is on the way!" ,"Hey! Your Ruth's Chris Steak House is on the way!"};
-//        String[] first2 = new String[] {"10 minutes ago","March 3rd, 2018", "January 29th, 2018"};
-        final LayoutInflater mInflator = LayoutInflater.from(this);
-//        listView = (ListView) findViewById(R.id.)
-        listView.setAdapter();
-
-//        final ArrayList
-//        listView = getListView();
-//        listView.setAdapter(new ArrayAdapter<String>(this,R.layout.item,values1));
-//        listView.setOnItemClickListener(this);
-//        listView.setAdapter(new ArrayAdapter<String>(this,R.layout.item,values2));
-//        listView.setOnItemClickListener(this);
-//listView.setAdapter(new ArrayAdapter<String>(this,R.layout.item,values3));
-//        listView.setOnItemClickListener(this);
-
-    }*/
     String[] values1 = new String[] {  "Hey! Your Getaway Cafe is on the way!", "10 minutes ago"};
     String[] values2 = new String[] {  "Hey! Your Getaway Cafe is on the way!", "March 3rd, 2018"};
     String[] values3 = new String[] {  "Hey! Your Getaway Cafe is on the way!", "January 29th, 2018"};
