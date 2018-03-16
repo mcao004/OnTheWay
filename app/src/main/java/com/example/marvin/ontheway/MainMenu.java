@@ -12,11 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainMenu extends AppCompatActivity {
-    private Button btn1;
+    private ImageView btn1;
     // Used to load the 'native-lib' library on application startup.
     View view;
     static {
@@ -81,7 +82,7 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-        Button toListButton = (Button) findViewById(R.id.button4);
+        ImageView toListButton = (ImageView) findViewById(R.id.button4);
         toListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,6 +1,7 @@
 package com.example.marvin.ontheway;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 public class SavedMap extends AppCompatActivity {
@@ -114,14 +116,17 @@ public class SavedMap extends AppCompatActivity {
         mainMenuIntent.putExtra("saved", snackbarMessage);
         startActivity(mainMenuIntent);
         finish();
+        RemoteViews headsupContentView;
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!")
+                .setContentTitle("Hey! Check it out!")
+//                .setCustomHeadsUpContentView(RemoteViews contenView)
+                .setContentText("One of the place you saved is on the way!")
+                .setDefaults(Notification.DEFAULT_ALL)
         .setPriority(NotificationManager.IMPORTANCE_HIGH);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        mNotificationManager.notify(001,mBuilder.build());
+        mNotificationManager.notify(0,mBuilder.build());
 
 
     }
