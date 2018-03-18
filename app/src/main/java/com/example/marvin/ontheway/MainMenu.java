@@ -152,8 +152,8 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private void ToList() {
-        //Intent placeListIntent = new Intent(this, PlacesList.class);
-        //startActivity(placeListIntent);
+        Intent savedListIntent = new Intent(this, SavedList.class);
+        startActivity(savedListIntent);
     }
 
     /**
