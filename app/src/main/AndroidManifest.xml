@@ -50,11 +50,10 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".SavedMap"></activity>
+        <activity android:name=".SavedMap" />
         <activity
             android:name=".ListViewNotification"
             android:label="Notification" />
-
     </application>
 
 </manifest>

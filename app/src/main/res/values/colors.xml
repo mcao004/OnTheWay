@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="backgroundcolor">#361969</color>
-    <color name="chatcolor">#ff6459</color>
+    <color name="backgroundcolor">#de4545</color>
+    <color name="chatcolor">#dedede</color>
     <!--<color name="transparent">#000000FF</color>-->
 </resources>

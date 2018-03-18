@@ -16,6 +16,6 @@
     <string name="date3">January 29th, 2018</string>
     <!--String[] date = new String[] {"10 minutes ago","March 3rd, 2018", "January 29th, 2018"};-->
 
-    <string name = "places_api">AIzaSyA5-pinLweoACxv4Fr7kQljUrIASq08k_w</string>
+    <string name="places_api">AIzaSyA5-pinLweoACxv4Fr7kQljUrIASq08k_w</string>
 
 </resources>
