@@ -2,11 +2,13 @@ package com.example.marvin.ontheway;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
@@ -116,17 +118,43 @@ public class SavedMap extends AppCompatActivity {
         mainMenuIntent.putExtra("saved", snackbarMessage);
         startActivity(mainMenuIntent);
         finish();
-        RemoteViews headsupContentView;
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                .setContentTitle("Hey! Check it out!")
-//                .setCustomHeadsUpContentView(RemoteViews contenView)
-                .setContentText("One of the place you saved is on the way!")
-                .setDefaults(Notification.DEFAULT_ALL)
-        .setPriority(NotificationManager.IMPORTANCE_HIGH);
+
+        // notification channel values
+        String CHANNEL_ID = "my_channel_01";// The id of the channel.
+        CharSequence name = CHANNEL_ID;// The user-visible name of the channel.
+        Notification.Builder mBuilder = null;
+
+        // different Notifications for different versions
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mBuilder = new Notification.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                    .setContentTitle("Hey! Check it out!")
+                    .setContentText("One of the places you saved is on the way!")
+                    .setDefaults(Notification.DEFAULT_ALL);
+        } else {
+            mBuilder = new Notification.Builder(this)
+                    .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                    .setContentTitle("Hey! Check it out!")
+                    .setContentText("One of the places you saved is on the way!")
+                    .setDefaults(Notification.DEFAULT_ALL);
+        }
+
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        mNotificationManager.notify(0,mBuilder.build());
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        // modifications for oreo notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Toast.makeText(SavedMap.this,
+                    "Notification attempt",
+                    Toast.LENGTH_SHORT)
+                    .show();
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+            mNotificationManager.createNotificationChannel(mChannel);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mNotificationManager.notify(0,mBuilder.build());
+        }
 
 
     }

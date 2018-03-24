@@ -18,7 +18,7 @@ public class SavedList extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    String myDataset[] = { "Mapo Tofu", "Fried Rice", "Fried Tontons", "Chocolate Rabbits"};
+    //String myDataset[] = { "Mapo Tofu", "Fried Rice", "Fried Tontons", "Chocolate Rabbits"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class SavedList extends AppCompatActivity {
     private List<String[]> generateSimpleList() {
         List<String[]> simplePlaceList = new ArrayList<>();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             simplePlaceList.add(new String[]{
                     "The Blue Box Cafe at Tiffany & Co.",
                     "Tiffany & Co. 727 Fifth Avenue,New York",
